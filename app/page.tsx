@@ -146,16 +146,27 @@ export default function Home() {
     setWallet((w) => ({ ...w, monthlyBudget: v }));
   }
 
+  // Clicking the logo returns to the landing (keeps wallet, orders, and activity).
+  function goHome() {
+    setMessages([]);
+    setArtifact(null);
+    setActiveOrder(null);
+    setOpenId("");
+    setInput("");
+    setError(null);
+    setLiveSteps([]);
+  }
+
   const started = messages.length > 0;
 
   return (
     <main className="flex h-screen flex-col bg-background text-foreground">
       <header className="flex items-center justify-between gap-3 px-6 py-4">
-        <div className="flex items-center gap-3">
+        <button onClick={goHome} aria-label="Go to home" className="flex items-center gap-3 rounded-lg transition-opacity hover:opacity-80">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/Logo.svg" alt="amazon" className="h-6 w-auto" />
           <span className="font-sans text-lg font-medium tracking-tight text-foreground/90">Genie</span>
-        </div>
+        </button>
         <div className="flex items-center gap-2">
           <button onClick={() => setShowLog(true)}
             className="relative flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-foreground/90 transition-colors hover:bg-secondary">
