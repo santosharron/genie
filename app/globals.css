@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dropstone brand palette — warm creamy dark */
+    --background: 33 10% 10%;        /* #1C1A17 canvas */
+    --foreground: 40 30% 94%;        /* #F5F2EC soft warm white */
+    --card: 33 11% 14%;              /* #272420 composer / raised */
+    --card-foreground: 40 30% 94%;
+    --popover: 36 12% 11%;
+    --popover-foreground: 40 30% 94%;
+    --primary: 189 94% 43%;          /* brand: cyan-500 #06b6d4 */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 34 12% 16%;         /* #2E2A24 */
+    --secondary-foreground: 40 30% 94%;
+    --muted: 34 10% 20%;
+    --muted-foreground: 38 8% 62%;
+    --accent: 34 12% 18%;
+    --accent-foreground: 40 30% 94%;
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 35 10% 20%;            /* #38342E */
+    --input: 35 10% 20%;
+    --ring: 189 94% 43%;             /* brand: cyan-500 */
+    --radius: 1.5rem;                /* brand roundness — single source of truth (24px) */
+
+    /* Sidebar — warm creamy dark (a touch deeper than canvas) */
+    --sidebar-background: 40 17% 7%; /* #15140F */
+    --sidebar-foreground: 40 20% 88%;
+    --sidebar-accent: 34 12% 16%;    /* hover */
+    --sidebar-border: 35 10% 16%;
+  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; font-family: var(--font-sf-pro), var(--font-inter), -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; }
+}
+
+/* Code blocks inside chat */
+pre code.hljs { background: #0a0a0a; border: 1px solid hsl(var(--border)); border-radius: 0.5rem; padding: 1rem; display: block; overflow-x: auto; font-size: 0.875rem; }
+code:not(pre code) { background: hsl(var(--secondary)); padding: 0.1rem 0.35rem; border-radius: 0.25rem; font-size: 0.875em; }
+
+/* Syntax highlighting theme (github-dark, trimmed) — colors rehype-highlight tokens */
+.hljs { color: #e6edf3; }
+.hljs-comment, .hljs-quote { color: #8b949e; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-type, .hljs-doctag { color: #ff7b72; }
+.hljs-string, .hljs-meta-string, .hljs-regexp, .hljs-addition { color: #a5d6ff; }
+.hljs-number, .hljs-symbol, .hljs-bullet, .hljs-template-variable { color: #79c0ff; }
+.hljs-title, .hljs-title.function_, .hljs-section, .hljs-name { color: #d2a8ff; }
+.hljs-attr, .hljs-attribute, .hljs-variable, .hljs-template-tag, .hljs-params { color: #ffa657; }
+.hljs-built_in, .hljs-builtin-name, .hljs-class .hljs-title { color: #ffa657; }
+.hljs-tag { color: #7ee787; }
+.hljs-tag .hljs-name { color: #7ee787; }
+.hljs-selector-id, .hljs-selector-class, .hljs-link { color: #79c0ff; }
+.hljs-meta { color: #8b949e; }
+.hljs-deletion { color: #ffdcd7; background: #67060c; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 600; }
+
+/* Dictation recording waveform bars */
+@keyframes wave-bar {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+
+/* Voice "listening" dots */
+@keyframes listening-wave {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Brand-mark loading "breathing" while a response generates */
+@keyframes logo-loading {
+  0%, 100% { transform: scale(0.82); opacity: 0.5; }
+  50%      { transform: scale(1.06); opacity: 1; }
+}
+.animate-logo-loading { animation: logo-loading 1.1s ease-in-out infinite; }
+
+/* Brand-mark pinch (squeeze) on click */
+@keyframes pinch {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(0.72); }
+  65%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+.animate-pinch { animation: pinch 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+@keyframes text-shake {
+  15% {
+    transform: translateX(5px);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
