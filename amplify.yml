@@ -6,6 +6,10 @@ frontend:
         - npm install
     build:
       commands:
+        # Amplify exposes console env vars at BUILD time but not to the Next.js
+        # SSR runtime. Write them into .env.production so the server routes
+        # (which read process.env at request time) can see them.
+        - env | grep -e DROPSTONE_ -e SERPAPI_ >> .env.production || true
         - npm run build
   artifacts:
     baseDirectory: .next
