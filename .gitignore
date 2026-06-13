@@ -7,4 +7,9 @@ next-env.d.ts
 .DS_Store
 *.tsbuildinfo
 
-DEMO_SCRIPT.md
+# Working docs, drafts, and generated diagram sources (kept locally, not part of the app)
+/_docs/
+*.pdf
+/public/Logo-dark.svg
+
+# Tracked on purpose (README images): architecture.png, userflow.png
